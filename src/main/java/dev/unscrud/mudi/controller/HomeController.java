@@ -39,7 +39,7 @@ public class HomeController {
         
         List<Pedido> pedidos = Arrays.asList(pedido, pedido2, pedido3);
         
-        model.addAttribute(pedidos);
+        model.addAttribute("pedidos",pedidos);
         
         return "home";
     }
