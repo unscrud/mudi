@@ -9,18 +9,20 @@
         <header>Mudi</header>
         
         <div>
-            <div>Nome do Produto</div>
-            <div>Valor: <span>199,99</span></div>
-            <div>Data da entrega: <span>10/10/2023</span></div>
+            <div><span th:text="${pedido.nomeDoProduto}"></span></div>
+            <div>Valor: <span th:text="${pedido.valorNegociado}"></span></div>
+            <div>Data da entrega: <span th:text="${pedido.dataDaEntrega}"></span></div>
             
             <div>Produto</div>
-            <div>url do produto</div>
+            <div><span th:text="${pedido.urlProduto}"></span></div>
             
             <div>Descrição</div>
             <div>
+                <span th:text="${pedido.descricao}"></span>
                 <textarea>descrição do pedido</textarea>
             </div>
             <div>
+                <span th:text="${pedido.urlImagem}"></span>
                 <img src="src" alt="alt"/>
             </div>
         </div>
