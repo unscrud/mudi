@@ -7,7 +7,7 @@ public class Pedido {
     private String nomeDoProduto;
     private BigDecimal valorNegociado;
     private LocalDate dataDaEntrega;
-    private String urlProdudo;
+    private String urlProduto;
     private String urlImagem;
     private String descricao;
 
@@ -35,12 +35,12 @@ public class Pedido {
         this.dataDaEntrega = dataDaEntrega;
     }
 
-    public String getUrlProdudo() {
-        return urlProdudo;
+    public String getUrlProduto() {
+        return urlProduto;
     }
 
-    public void setUrlProdudo(String urlProdudo) {
-        this.urlProdudo = urlProdudo;
+    public void setUrlProduto(String urlProduto) {
+        this.urlProduto = urlProduto;
     }
 
     public String getUrlImagem() {
