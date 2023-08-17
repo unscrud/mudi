@@ -8,22 +8,20 @@
     <body>
         <header>Mudi</header>
         
-        <div>
+        <div th:each="pedido : ${pedidos}">
             <div><span th:text="${pedido.nomeDoProduto}"></span></div>
             <div>Valor: <span th:text="${pedido.valorNegociado}"></span></div>
             <div>Data da entrega: <span th:text="${pedido.dataDaEntrega}"></span></div>
             
             <div>Produto</div>
-            <div><span th:text="${pedido.urlProduto}"></span></div>
+            <div><input type="text" name="urlProduto" th:value="${pedido.urlProduto}" /></div>
             
             <div>Descrição</div>
             <div>
-                <span th:text="${pedido.descricao}"></span>
-                <textarea>descrição do pedido</textarea>
+                <textarea th:text="${pedido.descricao}">descrição do pedido</textarea>
             </div>
             <div>
-                <span th:text="${pedido.urlImagem}"></span>
-                <img src="src" alt="alt"/>
+                <img th:src="${pedido.urlImagem}"/>
             </div>
         </div>
     </body>
