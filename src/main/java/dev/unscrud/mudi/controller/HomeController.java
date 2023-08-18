@@ -16,9 +16,6 @@ public class HomeController {
     @Autowired
     private PedidoRepository pedidoRepository;
     
-    @Autowired
-    private PedidoRepositoryDirect prd;
-    
     @GetMapping("/home")
     public String home(Model model) {
         Pedido pedido = new Pedido();
@@ -31,8 +28,7 @@ public class HomeController {
 
         pedidoRepository.save(pedido);
 
-        //List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findAll();
-        List<Pedido> pedidos = prd.buscarTodosPedidos();
+        List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findAll();
         
         model.addAttribute("pedidos",pedidos);
         
