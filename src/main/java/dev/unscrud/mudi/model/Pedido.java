@@ -1,15 +1,31 @@
 package dev.unscrud.mudi.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Entity
 public class Pedido {
+    @Id
+    @GeneratedValue(strategy=GenerationType.UUID)
+    private String uuid;
     private String nomeDoProduto;
     private BigDecimal valorNegociado;
     private LocalDate dataDaEntrega;
     private String urlProduto;
     private String urlImagem;
     private String descricao;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public String getNomeDoProduto() {
         return nomeDoProduto;
@@ -58,6 +74,9 @@ public class Pedido {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Pedido{" + "nomeDoProduto=" + nomeDoProduto + ", valorNegociado=" + valorNegociado + ", dataDaEntrega=" + dataDaEntrega + '}';
+    }
 }
