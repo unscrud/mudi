@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import dev.unscrud.mudi.model.Pedido;
 import dev.unscrud.mudi.repository.PedidoRepository;
-import dev.unscrud.mudi.repository.PedidoRepositoryDirect;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
