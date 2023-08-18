@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -16,7 +17,7 @@ public class HomeController {
     private PedidoRepository pedidoRepository;
     
     @GetMapping("/home")
-    public String home(Model model) {
+    public ModelAndView home(Model model) {
         Pedido pedido = new Pedido();
         pedido.setNomeDoProduto("Teclado Mecânico Bora");
         pedido.setDataDaEntrega(LocalDate.now());
@@ -29,8 +30,9 @@ public class HomeController {
 
         List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findAll();
         
-        model.addAttribute("pedidos",pedidos);
+        ModelAndView mv = new ModelAndView("home");
+        mv.addObject("pedidos",pedidos);
         
-        return "home";
+        return mv;
     }
 }
