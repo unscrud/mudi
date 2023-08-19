@@ -1,5 +1,9 @@
 package dev.unscrud.mudi.dto;
 
+import dev.unscrud.mudi.model.Pedido;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 public class NovoPedido {
     private String nomeProduto;
     private String urlProduto;
@@ -37,4 +41,16 @@ public class NovoPedido {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+    
+    public Pedido toPedido(){
+        Pedido pedido = new Pedido();
+        pedido.setNomeDoProduto(nomeProduto);
+        pedido.setDataDaEntrega(LocalDate.now());
+        pedido.setDescricao(descricao);
+        pedido.setUrlImagem(urlImagem);
+        pedido.setUrlProduto(urlProduto);
+        pedido.setValorNegociado(BigDecimal.ZERO);
+        return pedido;
+    }
+                
 }
