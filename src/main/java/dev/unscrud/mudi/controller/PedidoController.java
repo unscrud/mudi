@@ -19,7 +19,7 @@ public class PedidoController {
     private PedidoRepository pedidoRepository;
     
     @GetMapping("formulario")
-    public ModelAndView formulario(){
+    public ModelAndView formulario(NovoPedido novoPedido){
         ModelAndView mv = new ModelAndView("pedido/formulario");
         return mv;
     }
@@ -36,7 +36,7 @@ public class PedidoController {
         Pedido pedido = novoPedido.toPedido();
         pedidoRepository.save(pedido);
         
-        mv = new ModelAndView("pedido/novo");
+        mv = new ModelAndView("pedido/formulario");
         return mv;
     }
 }
