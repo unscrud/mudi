@@ -1,5 +1,6 @@
 package dev.unscrud.mudi.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -17,8 +18,14 @@ public class Pedido {
     private String nomeDoProduto;
     private BigDecimal valorNegociado;
     private LocalDate dataDaEntrega;
+    
+    @Column(length = 500)
     private String urlProduto;
+    
+    @Column(length = 500)
     private String urlImagem;
+    
+    @Column(length = 500)
     private String descricao;
     
     @Enumerated(EnumType.STRING)
