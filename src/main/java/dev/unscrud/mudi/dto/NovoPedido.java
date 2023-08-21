@@ -1,6 +1,7 @@
 package dev.unscrud.mudi.dto;
 
 import dev.unscrud.mudi.model.Pedido;
+import dev.unscrud.mudi.model.StatusPedido;
 import jakarta.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -55,6 +56,7 @@ public class NovoPedido {
         pedido.setDescricao(descricao);
         pedido.setUrlImagem(urlImagem);
         pedido.setUrlProduto(urlProduto);
+        pedido.setStatusPedido(StatusPedido.AGUARDANDO);
         return pedido;
     }
                 
