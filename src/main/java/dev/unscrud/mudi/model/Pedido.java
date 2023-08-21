@@ -1,6 +1,8 @@
 package dev.unscrud.mudi.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,6 +20,9 @@ public class Pedido {
     private String urlProduto;
     private String urlImagem;
     private String descricao;
+    
+    @Enumerated(EnumType.STRING)
+    private StatusPedido statusPedido;
 
     public String getUuid() {
         return uuid;
@@ -73,6 +78,14 @@ public class Pedido {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public StatusPedido getStatusPedido() {
+        return statusPedido;
+    }
+
+    public void setStatusPedido(StatusPedido statusPedido) {
+        this.statusPedido = statusPedido;
     }
 
     @Override
