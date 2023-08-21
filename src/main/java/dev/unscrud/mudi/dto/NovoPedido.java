@@ -52,11 +52,9 @@ public class NovoPedido {
     public Pedido toPedido(){
         Pedido pedido = new Pedido();
         pedido.setNomeDoProduto(nomeProduto);
-        pedido.setDataDaEntrega(LocalDate.now());
         pedido.setDescricao(descricao);
         pedido.setUrlImagem(urlImagem);
         pedido.setUrlProduto(urlProduto);
-        pedido.setValorNegociado(BigDecimal.ZERO);
         return pedido;
     }
                 
