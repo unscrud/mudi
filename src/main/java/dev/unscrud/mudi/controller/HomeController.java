@@ -8,6 +8,7 @@ import dev.unscrud.mudi.repository.PedidoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,9 +28,10 @@ public class HomeController {
         return mv;
     }
     
-    @GetMapping("/aguardando")
-    public ModelAndView aguardando(Model model) {
-        List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findByStatusPedido(StatusPedido.AGUARDANDO);
+    @GetMapping("/{status}")
+    public ModelAndView listarPedidosPor(@PathVariable("status") String status, Model model) {
+        StatusPedido statusPedido = StatusPedido.valueOf(status.toUpperCase());
+        List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findByStatusPedido(statusPedido);
         
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("pedidos",pedidos);
