@@ -3,6 +3,8 @@ package dev.unscrud.mudi.controller;
 import dev.unscrud.mudi.model.Pedido;
 import dev.unscrud.mudi.model.StatusPedido;
 import dev.unscrud.mudi.repository.PedidoRepository;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +37,8 @@ public class HelloController {
         pedido3.setUrlImagem("https://http2.mlstatic.com/D_NQ_NP_875331-MLU69516383663_052023-O.webp");
         pedido3.setDescricao("Fast Smart TV Britânia BTV43E3AAGSSGBLF 43” Full HD Led Dolby Audio 110V / 220V");
         pedido3.setStatusPedido(StatusPedido.ENTREGUE);
+        pedido3.setDataDaEntrega(LocalDate.now());
+        pedido3.setValorNegociado(BigDecimal.valueOf(2000));
         
         pedidoRepository.save(pedido);
         pedidoRepository.save(pedido2);
