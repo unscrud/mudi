@@ -36,7 +36,7 @@ public class HomeController {
         
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("pedidos",pedidos);
-        
+        mv.addObject("status", status);
         return mv;
     }
     
