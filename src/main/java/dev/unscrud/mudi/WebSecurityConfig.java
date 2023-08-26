@@ -22,7 +22,7 @@ public class WebSecurityConfig {
         ).formLogin((form)-> form
             .loginPage("/login")
             .permitAll()
-        ).logout((logout) -> logout.permitAll());
+        ).logout((logout) -> logout.logoutUrl("/logout"));
         
         return http.build();
     }
