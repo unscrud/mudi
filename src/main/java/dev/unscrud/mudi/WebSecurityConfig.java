@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
@@ -77,21 +79,25 @@ public class WebSecurityConfig {
     
     @Bean
     UserDetailsManager users(DataSource dataSource){
-//        UserDetails user = User.builder()
-//                .username("user")
-//                .password(passwordEncoder().encode("pwd"))
-//                .roles("USER")
-//                .build();
-//        UserDetails admin = User.builder()
-//                .username("admin")
-//                .password(passwordEncoder().encode("pwd"))
-//                .roles("USER", "ADMIN")
-//                .build();
+        UserDetails user = User.builder()
+                .username("user")
+                .password(passwordEncoder().encode("pwd"))
+                .roles("USER")
+                .build();
+        UserDetails admin = User.builder()
+                .username("admin")
+                .password(passwordEncoder().encode("pwd"))
+                .roles("USER", "ADMIN")
+                .build();
         
         JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-
-//        users.createUser(user);
-//        users.createUser(admin);
+        
+        if (!users.userExists(user.getUsername())){
+            users.createUser(user);
+        }
+        if (!users.userExists(admin.getUsername())){
+            users.createUser(admin);
+        }
 
         return users;
     }
