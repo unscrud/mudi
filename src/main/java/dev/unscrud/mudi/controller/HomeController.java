@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import dev.unscrud.mudi.model.Pedido;
 import dev.unscrud.mudi.model.StatusPedido;
 import dev.unscrud.mudi.repository.PedidoRepository;
+import java.security.Principal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,8 +21,9 @@ public class HomeController {
     private PedidoRepository pedidoRepository;
     
     @GetMapping
-    public ModelAndView home(Model model) {
-        List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findAll();
+    public ModelAndView home(Model model, Principal principal) {
+        List<Pedido> pedidos = (List<Pedido>) pedidoRepository
+                .findAllByUser(principal.getName());
         
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("pedidos",pedidos);
@@ -30,9 +32,12 @@ public class HomeController {
     }
     
     @GetMapping("/{status}")
-    public ModelAndView listarPedidosPor(@PathVariable("status") String status, Model model) {
-        StatusPedido statusPedido = StatusPedido.valueOf(status.toUpperCase());
-        List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findByStatusPedido(statusPedido);
+    public ModelAndView listarPedidosPor(@PathVariable("status") String status, 
+            Model model, Principal principal) {
+        StatusPedido statusPedido = StatusPedido
+                .valueOf(status.toUpperCase());
+        List<Pedido> pedidos = (List<Pedido>) pedidoRepository
+                .findByStatusPedido(statusPedido, principal.getName());
         
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("pedidos",pedidos);
