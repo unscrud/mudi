@@ -53,7 +53,8 @@ public class WebSecurityConfig {
             .loginPage("/login")
             .defaultSuccessUrl("/usuario/pedido",true)
             .permitAll()
-        ).logout((logout) -> logout.logoutUrl("/logout"));
+        ).logout((logout) -> logout.logoutUrl("/logout")
+                .logoutSuccessUrl("/home"));
         
         return http.build();
     }
