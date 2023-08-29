@@ -10,7 +10,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,26 +21,11 @@ public class HomeController {
     
     @GetMapping
     public ModelAndView home(Model model, Principal principal) {
-        List<Pedido> pedidos = (List<Pedido>) pedidoRepository
-                .findAllByUser(principal.getName());
+        List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findByStatusPedido(StatusPedido.ENTREGUE);
         
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("pedidos",pedidos);
         
-        return mv;
-    }
-    
-    @GetMapping("/{status}")
-    public ModelAndView listarPedidosPor(@PathVariable("status") String status, 
-            Model model, Principal principal) {
-        StatusPedido statusPedido = StatusPedido
-                .valueOf(status.toUpperCase());
-        List<Pedido> pedidos = (List<Pedido>) pedidoRepository
-                .findByStatusPedidoAndUser(statusPedido, principal.getName());
-        
-        ModelAndView mv = new ModelAndView("home");
-        mv.addObject("pedidos",pedidos);
-        mv.addObject("status", status);
         return mv;
     }
     
