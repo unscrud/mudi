@@ -37,7 +37,7 @@ public class HomeController {
         StatusPedido statusPedido = StatusPedido
                 .valueOf(status.toUpperCase());
         List<Pedido> pedidos = (List<Pedido>) pedidoRepository
-                .findByStatusPedido(statusPedido, principal.getName());
+                .findByStatusPedidoAndUser(statusPedido, principal.getName());
         
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("pedidos",pedidos);
