@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PedidoRepository extends JpaRepository<Pedido, String>{
-
+    public List<Pedido> findByStatusPedido(StatusPedido statusPedido);
+         
     @Query("SELECT p FROM Pedido p  JOIN p.user u WHERE u.username = :username AND p.statusPedido = :statusPedido")
     public List<Pedido> findByStatusPedidoAndUser( @Param("statusPedido") StatusPedido statusPedido, @Param("username") String username);
 
