@@ -45,7 +45,8 @@ public class WebSecurityConfig {
             MvcRequestMatcher.Builder mvc) throws Exception {
         http.authorizeHttpRequests((requests) ->  requests
             .requestMatchers(
-                    mvc.pattern("/hello")
+                    mvc.pattern("/hello"),
+                    mvc.pattern("/home")
             ).permitAll()
             .anyRequest().authenticated()            
         ).formLogin((form)-> form
