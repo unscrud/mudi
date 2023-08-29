@@ -50,7 +50,7 @@ public class WebSecurityConfig {
             .anyRequest().authenticated()            
         ).formLogin((form)-> form
             .loginPage("/login")
-            .defaultSuccessUrl("/home",true)
+            .defaultSuccessUrl("/usuario/pedido",true)
             .permitAll()
         ).logout((logout) -> logout.logoutUrl("/logout"));
         
