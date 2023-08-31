@@ -46,7 +46,8 @@ public class WebSecurityConfig {
         http.authorizeHttpRequests((requests) ->  requests
             .requestMatchers(
                     mvc.pattern("/hello"),
-                    mvc.pattern("/home")
+                    mvc.pattern("/home/**"),
+                    mvc.pattern("/api/**")
             ).permitAll()
             .anyRequest().authenticated()            
         ).formLogin((form)-> form
