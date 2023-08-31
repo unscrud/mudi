@@ -8,6 +8,7 @@ import dev.unscrud.mudi.repository.PedidoRepository;
 import java.security.Principal;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,8 +24,8 @@ public class HomeController {
     @GetMapping
     public ModelAndView home(Model model, Principal principal) {
         Sort sort = Sort.by("dataDaEntrega").descending();
-        
-        List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findByStatusPedido(StatusPedido.ENTREGUE, sort);
+        PageRequest paginacao = PageRequest.of(0, 3, sort);
+        List<Pedido> pedidos = (List<Pedido>) pedidoRepository.findByStatusPedido(StatusPedido.ENTREGUE, paginacao);
         
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("pedidos",pedidos);
