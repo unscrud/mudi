@@ -4,7 +4,7 @@
     <body onload="onLoad()">
         <header th:replace="~{base :: header}"></header>
         <div class="container" id="app">
-            <div  th:replace="~{base :: titulo('Ofertas')}"> {{message}}</div>
+            <div  th:replace="~{base :: titulo('Faça sua oferta')}"></div>
             <div class="card mb-3" v-for="pedido in pedidos">
                 <div class="card-header alert-dark">{{pedido.nomeDoProduto}}</div>
                 <div class="card-body">
@@ -20,7 +20,7 @@
 
                             <div>Descrição</div>
                             <div>
-                                <textarea class="form-control" th:text="${pedido.descricao}">{{pedido.descricao}}</textarea>
+                                <textarea class="form-control">{{pedido.descricao}}</textarea>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
