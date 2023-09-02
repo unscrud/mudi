@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head th:replace="~{base :: head}"></head>
-    <body>
+    <body onload="onLoad()">
         <header th:replace="~{base :: header}"></header>
         <div class="container">
             <div  th:replace="~{base :: titulo('Últimos pedidos')}"></div>
@@ -32,6 +32,12 @@
                 </div>
             </div>
         </div>
-        
+        <script>
+            function onLoad() {
+                
+            }
+        </script>
+        <!-- https://vuejs.org/guide/quick-start.html#using-vue-from-cdn -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     </body>
 </html>
