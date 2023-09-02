@@ -14,7 +14,7 @@
                                 <div class="col-md-4">Valor: <input type="number" /></div>
                                 <div class="col-md-8">Data da entrega: <input type="date" /></div>
                             </div>
-
+                            
                             <div>Produto</div>
                             <div><a class="form-control" v-bind:href="pedido.urlProduto">{{pedido.nomeDoProduto}}</a></div>
 
@@ -43,10 +43,16 @@
                       pedidos
                     };
                   }
-                }).mount('#app');
+                }).mount('#app').mounted( 
+                    axios
+                        .get('http://localhost:8080/api/pedidos/aguardando')
+                        .then(response => console.log(response.data))
+                );
             }
         </script>
         <!-- https://vuejs.org/guide/quick-start.html#using-vue-from-cdn -->
         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <!-- https://axios-http.com/docs/intro -->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </body>
 </html>
