@@ -4,28 +4,28 @@
     <body onload="onLoad()">
         <header th:replace="~{base :: header}"></header>
         <div class="container" id="app">
-            <div  th:replace="~{base :: titulo('Últimos pedidos')}"> {{message}}</div>
-            <div class="card mb-3" th:each="pedido : ${pedidos}">
-                <div class="card-header alert-dark"><span th:text="${pedido.nomeDoProduto}"></span></div>
+            <div  th:replace="~{base :: titulo('Ofertas')}"> {{message}}</div>
+            <div class="card mb-3" v-for="pedido in pedidos">
+                <div class="card-header alert-dark">{{pedido.nomeDoProduto}}</div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-sm-8 mb-3">
                             <div class="row">
-                                <div class="col-md-4">Valor: <span th:if="${pedido.valorNegociado} != null" th:text="${'R$ '+#numbers.formatDecimal(pedido.valorNegociado,3,'POINT',2,'COMMA')}"></span></div>
-                                <div class="col-md-8">Data da entrega: <span th:text="${#temporals.format(pedido.dataDaEntrega, 'dd/MM/yyyy')}"></span></div>
+                                <div class="col-md-4">Valor: <input type="number" /></div>
+                                <div class="col-md-8">Data da entrega: <input type="date" /></div>
                             </div>
 
                             <div>Produto</div>
-                            <div><input class="form-control" type="text" name="urlProduto" th:value="${pedido.urlProduto}" /></div>
+                            <div><a class="form-control" v-bind:href="pedido.urlProduto">{{pedido.nomeDoProduto}}</a></div>
 
                             <div>Descrição</div>
                             <div>
-                                <textarea class="form-control" th:text="${pedido.descricao}">descrição do pedido</textarea>
+                                <textarea class="form-control" th:text="${pedido.descricao}">{{pedido.descricao}}</textarea>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
                             <div>
-                                <img class="img-thumbnail" th:src="${pedido.urlImagem}"/>
+                                <img class="img-thumbnail" v-bind:src="pedido.urlImagem" />
                             </div>
                         </div>
                     </div>
