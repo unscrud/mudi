@@ -34,9 +34,11 @@
         </div>
         <script>
             function onLoad() {
+                const { createApp, ref } = Vue;
+
                 createApp({
-                    setup() {
-                        const pedidos = [
+                  setup() {
+                        const pedidos = ref([
                             {
                                 "uuid": "d67aabe4-5095-4c1d-9dc7-41abac2e0b30",
                                 "nomeDoProduto": "Teclado Mecânico Bora",
@@ -77,11 +79,11 @@
                                 "descricao": "T-DAGGER Teclado Mecânico Bora Rgb Switch - T-tgk315-bl, PRETO",
                                 "statusPedido": "AGUARDANDO"
                             }
-                        ];
-                        return {
-                            pedidos
-                        };
-                    }
+                        ]);
+                    return {
+                      pedidos
+                    };
+                  }
                 }).mount('#app');
             }
         </script>
