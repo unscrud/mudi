@@ -4,8 +4,6 @@ import dev.unscrud.mudi.model.Pedido;
 import dev.unscrud.mudi.model.StatusPedido;
 import dev.unscrud.mudi.record.PedidoRecord;
 import dev.unscrud.mudi.repository.PedidoRepository;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
