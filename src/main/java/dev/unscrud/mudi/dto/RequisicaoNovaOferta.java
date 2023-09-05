@@ -1,6 +1,6 @@
 package dev.unscrud.mudi.dto;
 
-class RequisicaoNovaOferta {
+public class RequisicaoNovaOferta {
     private String pedidoUuid;
     private String valor;
     private String dataDaEntrega;
