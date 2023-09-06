@@ -1,6 +1,14 @@
 package dev.unscrud.mudi.dto;
 
+import dev.unscrud.mudi.model.Oferta;
+import dev.unscrud.mudi.model.Pedido;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class RequisicaoNovaOferta {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
     private String pedidoUuid;
     private String valor;
     private String dataDaEntrega;
@@ -36,5 +44,14 @@ public class RequisicaoNovaOferta {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public Oferta toOferta(Pedido pedido) {
+        Oferta oferta = new Oferta();
+        oferta.setComentario(comentario);
+        oferta.setDataDaEntrega(LocalDate.parse(dataDaEntrega,formatter));
+        oferta.setValor(new BigDecimal(valor));
+        oferta.setPedido(pedido);
+        return oferta;
     }
 }
