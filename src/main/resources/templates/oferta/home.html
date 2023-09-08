@@ -55,12 +55,17 @@
             function onLoad() {
                 const { createApp, ref } = Vue;
 
-                const app = createApp({
+                createApp({
                     setup() {
                         const pedidos = ref([]);
                         return {
                             pedidos
                         };
+                    },
+                    mounted() {
+                        axios
+                            .get('http://localhost:8080/api/pedidos/aguardando')
+                            .then(response => this.pedidos = response.data);
                     },
                     methods: {
                         async enviarOferta(pedido) {
@@ -73,12 +78,6 @@
                         }
                     }
                 }).mount('#app');
-
-                app.mounted(
-                    axios
-                        .get('http://localhost:8080/api/pedidos/aguardando')
-                        .then(response => app.pedidos = response.data)
-                );
             }
         </script>
         <!-- https://vuejs.org/guide/quick-start.html#using-vue-from-cdn -->
