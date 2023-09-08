@@ -49,6 +49,7 @@ public class WebSecurityConfig {
 
             .authorizeHttpRequests((requests) ->  requests
             .requestMatchers(
+                    mvc.pattern("/favicon.ico"),
                     mvc.pattern("/hello"),
                     mvc.pattern("/home/**")
             ).permitAll()
