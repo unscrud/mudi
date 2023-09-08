@@ -2,6 +2,8 @@ package dev.unscrud.mudi.dto;
 
 import dev.unscrud.mudi.model.Oferta;
 import dev.unscrud.mudi.model.Pedido;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +12,9 @@ public class RequisicaoNovaOferta {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     
     private String pedidoUuid;
+    
+    @Pattern(regexp = "^\\d+(\\.\\d{2})?$")
+    @NotEmpty
     private String valor;
     private String dataDaEntrega;
     private String comentario;
