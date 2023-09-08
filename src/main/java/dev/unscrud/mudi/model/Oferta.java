@@ -1,5 +1,6 @@
 package dev.unscrud.mudi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ public class Oferta {
     private LocalDate dataDaEntrega;
     private String comentario;
     
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Pedido pedido;
 
