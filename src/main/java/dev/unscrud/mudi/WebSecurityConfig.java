@@ -43,11 +43,14 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, 
             MvcRequestMatcher.Builder mvc) throws Exception {
-        http.authorizeHttpRequests((requests) ->  requests
+        http
+            // TODO: tentar habilitar sem o erro que estava ocorrendo    
+            .csrf().disable() // para corrigir erro 403 em posts em apis rest
+
+            .authorizeHttpRequests((requests) ->  requests
             .requestMatchers(
                     mvc.pattern("/hello"),
-                    mvc.pattern("/home/**"),
-                    mvc.pattern("/api/**")
+                    mvc.pattern("/home/**")
             ).permitAll()
             .anyRequest().authenticated()            
         ).formLogin((form)-> form
