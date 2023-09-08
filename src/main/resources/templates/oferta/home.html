@@ -23,7 +23,7 @@
                                     {{pedido.descricao}}
                                 </textarea>
                             </div>
-                            
+
                             <div class="row mt-3">
                                 <div class="col-md-4">
                                     Valor: <input class="form-control" type="text" v-model="pedido.valorNegociado"/>
@@ -38,10 +38,10 @@
                                     {{pedido.descricao}}
                                 </textarea>
                             </div>
-                            
+
                             <button class="btn btn-primary mt-3" v-on:click="enviarOferta(pedido)">Enviar Oferta</button>
                         </div>
-                        
+
                         <div class="col-12 col-sm-4">
                             <div>
                                 <img class="img-thumbnail" v-bind:src="pedido.urlImagem" />
@@ -55,24 +55,29 @@
             function onLoad() {
                 const { createApp, ref } = Vue;
 
-                const enviarOferta = (pedido) => {
-                    console.log(pedido);
-                };
-
                 const app = createApp({
-                  setup() {
-                    const pedidos = ref([]);
-                    return {
-                      pedidos,
-                      enviarOferta
-                    };
-                  }
+                    setup() {
+                        const pedidos = ref([]);
+                        return {
+                            pedidos
+                        };
+                    },
+                    methods: {
+                        async enviarOferta(pedido) {
+                            await axios.post('http://localhost:8080/api/ofertas', {
+                                pedidoUuid: pedido.uuid,
+                                valor: pedido.valorNegociado,
+                                dataDaEntrega: pedido.dataDaEntrega,
+                                comentario: pedido.comentario
+                            }).then(response => console.log(response, response.data));
+                        }
+                    }
                 }).mount('#app');
-                
-                app.mounted( 
-                        axios
-                            .get('http://localhost:8080/api/pedidos/aguardando')
-                            .then(response => app.pedidos = response.data)
+
+                app.mounted(
+                    axios
+                        .get('http://localhost:8080/api/pedidos/aguardando')
+                        .then(response => app.pedidos = response.data)
                 );
             }
         </script>
