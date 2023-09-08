@@ -16,7 +16,11 @@ public class RequisicaoNovaOferta {
     @Pattern(regexp = "^\\d+(\\.\\d{2})?$")
     @NotEmpty
     private String valor;
+    
+    @Pattern(regexp = "^\\d{4}\\-\\d{2}\\-\\d{2}$")
+    @NotEmpty
     private String dataDaEntrega;
+    
     private String comentario;
 
     public String getPedidoUuid() {
