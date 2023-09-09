@@ -6,8 +6,10 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+@Component
 public class InterceptadorDeAcessos implements HandlerInterceptor {
 
     public static List<Acesso> acessos = new ArrayList<>();
