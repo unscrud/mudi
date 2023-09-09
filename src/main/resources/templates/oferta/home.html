@@ -89,7 +89,10 @@
                                 pedido.ofertaEnviada = true;
                             }).catch(error => {
                                 const erros = error.response.data.errors;
-                                erros.forEach(erro => console.log(erro));
+                                erros.forEach(erro => {
+                                    console.log(erro);
+                                    this.pedido.erros[erro.field] = erro.defaultMessage;
+                                });
                             });
                         }
                     }
