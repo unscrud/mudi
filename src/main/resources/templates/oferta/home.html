@@ -89,8 +89,7 @@
                                 pedido.ofertaEnviada = true;
                             }).catch(error => {
                                 const erros = error.response.data.errors;
-                                
-                                console.log(erros);
+                                erros.forEach(erro => console.log(erro));
                             });
                         }
                     }
