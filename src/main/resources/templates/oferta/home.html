@@ -85,6 +85,10 @@
                     },
                     methods: {
                         async enviarOferta(pedido) {
+                            pedido.erros = {
+                                valor: '',
+                                dataDaEntrega: ''
+                            };
                             await axios.post('http://localhost:8080/api/ofertas', {
                                 pedidoUuid: pedido.uuid,
                                 valor: pedido.valorNegociado,
