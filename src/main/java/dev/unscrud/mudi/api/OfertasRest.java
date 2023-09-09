@@ -4,6 +4,7 @@ import dev.unscrud.mudi.model.Oferta;
 import dev.unscrud.mudi.dto.RequisicaoNovaOferta;
 import dev.unscrud.mudi.model.Pedido;
 import dev.unscrud.mudi.repository.PedidoRepository;
+import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class OfertasRest {
     private PedidoRepository pedidoRepository;
     
     @PostMapping
-    public ResponseEntity<Oferta> criarOferta(@RequestBody RequisicaoNovaOferta requisicao) {
+    public ResponseEntity<Oferta> criarOferta(@Valid @RequestBody RequisicaoNovaOferta requisicao) {
         try {
             Optional<Pedido> pedidoBuscado = pedidoRepository.findById(requisicao.getPedidoUuid());
 
