@@ -87,7 +87,11 @@
                             }).then(response => {
                                 console.log(response, response.data);
                                 pedido.ofertaEnviada = true;
-                            }).catch(error => console.log(error.response.data));
+                            }).catch(error => {
+                                const erros = error.response.data.errors;
+                                
+                                console.log(erros);
+                            });
                         }
                     }
                 }).mount('#app');
