@@ -10,7 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 public class InterceptadorDeAcessos implements HandlerInterceptor {
 
-    private static List<Acesso> acessos = new ArrayList<>();
+    public static List<Acesso> acessos = new ArrayList<>();
     
     @Override
     public boolean preHandle(HttpServletRequest request, 
@@ -32,7 +32,7 @@ public class InterceptadorDeAcessos implements HandlerInterceptor {
         acessos.add(acesso);
     }
 
-    class Acesso {
+    public static class Acesso {
         private String path;
         private LocalDateTime data;
         private Duration duracao;
